@@ -1,0 +1,20 @@
+{
+  "name": "restapis",
+  "version": "1.0.0",
+  "description": "Aprendiendo a crear Rest APIS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Adriana Clemente",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
