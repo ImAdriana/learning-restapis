@@ -1,5 +1,5 @@
 import express from 'express';
-import index from './routes/index.js';
+import clienteRoutes from './routes/clienteRoutes.js';
 import mongoose from 'mongoose';
 
 // Conectar mongo
@@ -9,8 +9,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/restapis');
 //Crear el servidor
 const app = express();
 
+// Habilitar bodyparser
+// Para poder leer los valores que se pasen por postman
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Rutas de la app
-app.use('/', index);
+app.use('/', clienteRoutes);
 
 const port = 5000;
 
