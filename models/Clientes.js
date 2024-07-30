@@ -28,4 +28,5 @@ const clientesSchema = new Schema({
 });
 
 // Exportar el modelo
-module.exports = mongoose.model('Clientes', clientesSchema);
+const Clientes = mongoose.model('Clientes', clientesSchema);
+export default Clientes;
