@@ -3,7 +3,6 @@ import multer from 'multer'; // Permite subir archivos en node
 import shortid from 'shortid';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { nextTick } from 'process';
 
 // Obtén __dirname
 const __filename = fileURLToPath(import.meta.url);
