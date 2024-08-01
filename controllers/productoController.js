@@ -69,4 +69,62 @@ const mostrarProductos = async (req, res, next) => {
     }
 };
 
-export { agregarProducto, subirArchivo, mostrarProductos };
+// Mostrar un producto mediante el ID
+const mostrarProducto = async (req, res, next) => {
+    try {
+        const producto = await Productos.findById(req.params.idProducto);
+        res.json(producto);
+    } catch (error) {
+        res.json({ mensaje: 'No existe el producto' });
+        next();
+    }
+};
+
+// Actualiza el producto mediante su ID
+const actualizarProducto = async (req, res, next) => {
+    try {
+        // Construir un nuevo producto
+        let nuevoProducto = req.body;
+
+        // Verificar si hay una imagen nueva para actualizar
+        if (req.file) {
+            nuevoProducto.imagen = req.file.filename;
+        } else {
+            let productoAnterior = await Productos.findById(
+                req.params.idProducto
+            );
+            nuevoProducto.imagen = productoAnterior.imagen;
+        }
+
+        let producto = await Productos.findOneAndUpdate(
+            {
+                _id: req.params.idProducto,
+            },
+            nuevoProducto,
+            { new: true }
+        );
+        res.json(producto);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+// Elimina el producto mediante su ID
+const eliminarProducto = async (req, res, next) => {
+    try {
+        // id.producto porque fue como se colocó en la url
+        await Productos.findOneAndDelete({ _id: req.params.idProducto });
+        res.json({ mensaje: 'Producto eliminado' });
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+export {
+    agregarProducto,
+    subirArchivo,
+    mostrarProductos,
+    mostrarProducto,
+    actualizarProducto,
+    eliminarProducto,
+};
