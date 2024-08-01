@@ -11,6 +11,9 @@ import {
     agregarProducto,
     subirArchivo,
     mostrarProductos,
+    mostrarProducto,
+    actualizarProducto,
+    eliminarProducto,
 } from '../controllers/productoController.js';
 const router = express.Router();
 
@@ -38,6 +41,15 @@ router.post('/productos', subirArchivo, agregarProducto);
 
 // Muestra todos los productos
 router.get('/productos', mostrarProductos);
+
+// Muestra un producto en específico
+router.get('/productos/:idProducto', mostrarProducto);
+
+// Actualiza un producto mediante su id
+router.put('/productos/:idProducto', subirArchivo, actualizarProducto);
+
+// Eliminar producto
+router.delete('/productos/:idProducto', eliminarProducto);
 
 export default router;
 // };
