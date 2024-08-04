@@ -42,7 +42,7 @@ Este proyecto es una REST API desarrollada con **Node.js** y **MongoDB** que con
 
     Esto iniciará el servidor utilizando `nodemon`, que reiniciará automáticamente la aplicación al detectar cambios en los archivos.
 
-2. La API estará disponible en `http://localhost:3000`.
+2. La API estará disponible en `http://localhost:5000`.
 
 ## Endpoints
 
