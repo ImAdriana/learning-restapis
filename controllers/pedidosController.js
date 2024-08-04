@@ -36,4 +36,60 @@ const mostrarPedidos = async (req, res, next) => {
         next();
     }
 };
-export { nuevoPedido, mostrarPedidos };
+
+const mostrarPedido = async (req, res, next) => {
+    try {
+        const pedido = await Pedidos.findById(req.params.idPedido)
+            .populate('cliente')
+            .populate({
+                path: 'pedido.producto', // Dónde va a encontrar la referencia
+                model: 'Productos', // Verificar en cómo se tiene en la referencia del modelo
+            });
+        res.json(pedido);
+    } catch (error) {
+        res.json({ mensaje: 'No existe ese pedido' });
+        next();
+    }
+};
+
+const actualizarPedido = async (req, res, next) => {
+    try {
+        const pedido = await Pedidos.findOneAndUpdate(
+            {
+                _id: req.params.idPedido,
+            },
+            req.body,
+            {
+                new: true,
+            }
+        )
+            .populate('cliente')
+            .populate({
+                path: 'pedido.producto', // Dónde va a encontrar la referencia
+                model: 'Productos', // Verificar en cómo se tiene en la referencia del modelo
+            });
+        res.json(pedido);
+    } catch (error) {
+        console.log(error);
+        next();
+    }
+};
+
+const eliminarPedido = async (req, res, next) => {
+    try {
+        await Pedidos.findOneAndDelete({
+            _id: req.params.idPedido,
+        });
+        res.json({ mensaje: 'Pedido eliminado' });
+    } catch (error) {
+        res.json({ mensaje: 'Pedido no reconcido' });
+        next();
+    }
+};
+export {
+    nuevoPedido,
+    mostrarPedidos,
+    mostrarPedido,
+    actualizarPedido,
+    eliminarPedido,
+};
