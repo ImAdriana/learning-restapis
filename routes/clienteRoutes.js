@@ -19,6 +19,9 @@ import {
 import {
     nuevoPedido,
     mostrarPedidos,
+    mostrarPedido,
+    actualizarPedido,
+    eliminarPedido,
 } from '../controllers/pedidosController.js';
 const router = express.Router();
 
@@ -64,5 +67,13 @@ router.post('/pedidos', nuevoPedido);
 // Mostrar todos los pedidos
 router.get('/pedidos', mostrarPedidos);
 
+// Mostrar pedido mediante su id
+router.get('/pedidos/:idPedido', mostrarPedido);
+
+// Actualizar un pedido
+router.put('/pedidos/:idPedido', actualizarPedido);
+
+// Eliminar un pedido
+router.delete('/pedidos/:idPedido', eliminarPedido);
+
 export default router;
-// };
