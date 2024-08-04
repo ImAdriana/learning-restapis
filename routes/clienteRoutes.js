@@ -15,6 +15,11 @@ import {
     actualizarProducto,
     eliminarProducto,
 } from '../controllers/productoController.js';
+
+import {
+    nuevoPedido,
+    mostrarPedidos,
+} from '../controllers/pedidosController.js';
 const router = express.Router();
 
 // REST API da los lineamientos para llamar las URL's
@@ -50,6 +55,14 @@ router.put('/productos/:idProducto', subirArchivo, actualizarProducto);
 
 // Eliminar producto
 router.delete('/productos/:idProducto', eliminarProducto);
+
+/** PEDIDOS */
+
+// Para nuevos pedidos
+router.post('/pedidos', nuevoPedido);
+
+// Mostrar todos los pedidos
+router.get('/pedidos', mostrarPedidos);
 
 export default router;
 // };
